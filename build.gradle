@@ -10,6 +10,24 @@ repositories {
 }
 
 dependencies {
-
+    implementation 'commons-io:commons-io:2.11.0'
+    implementation 'junit:junit:4.13.2'
+    implementation 'de.bmiag.tapir:tapir-javafx:4.0.0'
 }
 
+
+build {
+    doLast {
+        var fileName = "NoDistractions-" + version + ".jar"
+        var target = "F:\\.Java Workspace\\NoDistractions\\build"
+
+        copy {
+            from ("${buildDir}\\libs\\${fileName}")
+            into (target)
+        }
+    }
+}
+
+jar.manifest.attributes(
+        'Main-Class': 'skillter.nodistractions.Main'
+)
